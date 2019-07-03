@@ -16,7 +16,6 @@ include (Checks)
 include (CrLinkLibraries)
 include (ExtractMakeVariable)
 include (GetAcInitVersion)
-include (MsvcRuntime)
 
 get_ac_init_version()
 
