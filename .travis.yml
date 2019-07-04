@@ -6,7 +6,8 @@ before_install:
   # Build check
   - git clone https://github.com/libcheck/check.git
   - pushd check
-  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")' | cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
+  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")\n' | 
+     cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
   - mkdir build64
   - pushd build64
   - cmake -D BUILD_TESTING=0 -D CHECK_ENABLE_TESTS=0 -G "Visual Studio 15 2017" -A x64 ..
@@ -16,7 +17,8 @@ before_install:
   # Build fmem
   - git clone https://github.com/Snaipe/fmem.git
   - pushd fmem
-  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")' | cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
+  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")\n' | 
+     cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
   - mkdir build64
   - pushd build64
   - cmake -D BUILD_TESTING=0 -G "Visual Studio 15 2017" -A x64 ..
@@ -26,7 +28,8 @@ before_install:
   # build peg
   - git clone https://github.com/Loupi/peg.git
   - pushd peg
-  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")' | cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
+  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")\n' | 
+     cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
   - mkdir build64
   - pushd build64
   - cmake -G "Visual Studio 15 2017" -A x64 ..
@@ -36,7 +39,8 @@ before_install:
   # Build wingetopt
   - git clone https://github.com/alex85k/wingetopt.git
   - pushd wingetopt
-  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")' | cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
+  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")\n' | 
+     cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
   - mkdir build64
   - pushd build64
   - cmake -G "Visual Studio 15 2017" -A x64 ..
@@ -45,9 +49,19 @@ before_install:
   - popd
 
 install:
-  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")' | cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
+  - printf 'cmake_policy(SET CMP0091 NEW)\nset(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")\n' | 
+     cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
   - mkdir build64
   - pushd build64
-  - cmake -G "Visual Studio 15 2017" -A x64 ..
+  - cmake 
+     -D CHECK_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/src 
+     -D CHECK_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/src/Release/check.lib 
+     -D COMPAT_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/lib/Release/compat.lib
+     -D FMEM_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/fmem/build64/gen
+     -D FMEM_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/fmem/build64/Release/fmem.lib
+     -D GETOPT_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/wingetopt/src
+     -D GETOPT_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/wingetopt/build64/Release/wingetopt.lib
+     -D LEG_PROGRAM=${CMAKE_CURRENT_SOURCE_DIR}/peg/build64/Release/leg.exe 
+     -G "Visual Studio 15 2017" -A x64 ..
   - popd
   - cmake --build build64 --config Releases
