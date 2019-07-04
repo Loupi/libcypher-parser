@@ -53,15 +53,6 @@ install:
      cat - CMakeLists.txt > temp && mv temp CMakeLists.txt
   - mkdir build64
   - pushd build64
-  - cmake 
-     -D CHECK_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/src 
-     -D CHECK_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/src/Release/check.lib 
-     -D COMPAT_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/lib/Release/compat.lib
-     -D FMEM_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/fmem/build64/gen
-     -D FMEM_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/fmem/build64/Release/fmem.lib
-     -D GETOPT_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/wingetopt/src
-     -D GETOPT_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/wingetopt/build64/Release/wingetopt.lib
-     -D LEG_PROGRAM=${CMAKE_CURRENT_SOURCE_DIR}/peg/build64/Release/leg.exe 
-     -G "Visual Studio 15 2017" -A x64 ..
+  - cmake -D CHECK_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/src -D CHECK_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/src/Release/check.lib -D COMPAT_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/check/build64/lib/Release/compat.lib -D FMEM_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/fmem/build64/gen -D FMEM_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/fmem/build64/Release/fmem.lib -D GETOPT_INCLUDE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/wingetopt/src -D GETOPT_LIBRARY=${CMAKE_CURRENT_SOURCE_DIR}/wingetopt/build64/Release/wingetopt.lib -D LEG_PROGRAM=${CMAKE_CURRENT_SOURCE_DIR}/peg/build64/Release/leg.exe -G "Visual Studio 15 2017" -A x64 ..
   - popd
   - cmake --build build64 --config Releases
