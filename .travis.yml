@@ -55,4 +55,4 @@ install:
   - pushd build64
   - cmake -G 'Visual Studio 15 2017' -A x64 -D CHECK_INCLUDE_DIR='C:/Users/travis/build/Loupi/libcypher-parser/check/build64/src' -D CHECK_LIBRARY='C:/Users/travis/build/Loupi/libcypher-parser/check/build64/src/Release/check.lib' -D COMPAT_LIBRARY='C:/Users/travis/build/Loupi/libcypher-parser/check/build64/lib/Release/compat.lib' -D FMEM_INCLUDE_DIR='C:/Users/travis/build/Loupi/libcypher-parser/fmem/build64/gen' -D FMEM_LIBRARY='C:/Users/travis/build/Loupi/libcypher-parser/fmem/build64/Release/fmem.lib' -D GETOPT_INCLUDE_DIR='C:/Users/travis/build/Loupi/libcypher-parser/wingetopt/src' -D GETOPT_LIBRARY='C:/Users/travis/build/Loupi/libcypher-parser/wingetopt/build64/Release/wingetopt.lib' -D LEG_PROGRAM='C:/Users/travis/build/Loupi/libcypher-parser/peg/build64/Release/leg.exe' ..
   - popd
-  - cmake --build build64 --config Releases
+  - cmake --build build64 --config Release
