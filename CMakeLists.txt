@@ -118,7 +118,7 @@ if (LEG_FOUND)
 endif (LEG_FOUND)
 
 if (CHECK_FOUND AND FMEM_FOUND)
-  string (REPLACE '/src' '' CHECK_UNISTD_DIR ${CHECK_INCLUDE_DIRS})
+  string (REPLACE "/src" "" CHECK_UNISTD_DIR ${CHECK_INCLUDE_DIRS})
   target_include_directories (tests PUBLIC ${FMEM_INCLUDE_DIRS} ${CHECK_INCLUDE_DIRS} ${CHECK_UNISTD_DIR})
   target_link_libraries (tests ${CHECK_LIBRARIES} ${FMEM_LIBRARIES})
 endif (CHECK_FOUND AND FMEM_FOUND)
