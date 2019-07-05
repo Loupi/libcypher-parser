@@ -73,7 +73,6 @@ list (APPEND CMAKE_REQUIRED_DEFINITIONS
   -D_GNU_SOURCE
   -D_CRT_RAND_S
   -DVC_EXTRALEAN
-  -DWIN32
   -DWIN32_LEAN_AND_MEAN)
 
 extract_make_variable (lib/src/Makefile.am libcypher_parser_la_SOURCES SOURCES lib/src/)
@@ -119,7 +118,8 @@ if (LEG_FOUND)
 endif (LEG_FOUND)
 
 if (CHECK_FOUND AND FMEM_FOUND)
-  target_include_directories (tests PUBLIC ${FMEM_INCLUDE_DIRS} ${CHECK_INCLUDE_DIRS} ${CHECK_INCLUDE_DIRS}/..)
+  string (REPLACE '/src' '' CHECK_UNISTD_DIR ${CHECK_INCLUDE_DIRS})
+  target_include_directories (tests PUBLIC ${FMEM_INCLUDE_DIRS} ${CHECK_INCLUDE_DIRS} ${CHECK_UNISTD_DIR})
   target_link_libraries (tests ${CHECK_LIBRARIES} ${FMEM_LIBRARIES})
 endif (CHECK_FOUND AND FMEM_FOUND)
 
