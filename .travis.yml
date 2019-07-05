@@ -62,6 +62,6 @@ install:
      -D GETOPT_INCLUDE_DIR='C:/Users/travis/build/Loupi/libcypher-parser/wingetopt/src' 
      -D GETOPT_LIBRARY='C:/Users/travis/build/Loupi/libcypher-parser/wingetopt/build64/Release/wingetopt.lib' 
      -D LEG_PROGRAM='C:/Users/travis/build/Loupi/libcypher-parser/peg/build64/Release/leg.exe' 
-     -G 'Visual Studio 15 2017' -A x64..
+     -G 'Visual Studio 15 2017' -A x64 ..
   - popd
   - cmake --build build64 --config Release
