@@ -73,6 +73,7 @@ list (APPEND CMAKE_REQUIRED_DEFINITIONS
   -D_GNU_SOURCE
   -D_CRT_RAND_S
   -DVC_EXTRALEAN
+  -DWIN32
   -DWIN32_LEAN_AND_MEAN)
 
 extract_make_variable (lib/src/Makefile.am libcypher_parser_la_SOURCES SOURCES lib/src/)
